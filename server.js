@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const routes = require("./controllers/index")
 
 const PORT = process.env.PORT || 3000;
 
@@ -12,7 +13,7 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", { useNewUrlParser: true, });
 
-app.use(require(""));
+app.use(routes);
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
