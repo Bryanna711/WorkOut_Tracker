@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const routes = require("./controllers/index")
+const routes = require("./controllers/index");
+mongoose.set('toJSON', { virtuals: true });
 
 const PORT = process.env.PORT || 3000;
 
@@ -11,7 +12,13 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", { useNewUrlParser: true, });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout",
+    {
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true,
+    }
+);
 
 app.use(routes);
 
